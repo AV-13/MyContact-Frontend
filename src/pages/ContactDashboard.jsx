@@ -2,7 +2,7 @@ import Table from 'react-bootstrap/Table';
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
-import { MdEdit } from "react-icons/md";
+import { MdEdit, MdDelete } from "react-icons/md";
 import { useNavigate } from 'react-router-dom';
 
 
@@ -10,7 +10,6 @@ const ContactDashboard = () => {
     const navigate = useNavigate();
     const [contacts, setContacts] = useState([])
     useEffect(() => { fetchContacts(); }, []);
-
     const fetchContacts = async () => {
         try {
             const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/contact/all`, { withCredentials: true });
@@ -25,6 +24,15 @@ const ContactDashboard = () => {
         navigate(`/contact/update/${contactId}`);
     }
 
+    const deleteContact = async (contactId) => {
+            console.log(contactId)
+        try {
+            await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/contact/delete/${contactId}`, { withCredentials: true });
+            await fetchContacts();
+        } catch(e) {
+                console.error(e);
+            }
+    }
      return (
         <div className="page">
             <h1>Contact Dashboard</h1>
@@ -46,7 +54,9 @@ const ContactDashboard = () => {
                         <td>{contact.telephone}</td>
                         <td>{contact.email}</td>
                         <td>{contact.adresse}</td>
-                        <td><MdEdit onClick={() => updateContact(contact._id)}/></td>
+                        <td><MdEdit size={20} onClick={() => updateContact(contact._id)}/></td>
+                        <td><MdDelete size={20} onClick={() => deleteContact(contact._id)}/></td>
+
                     </tr>
                 ))}
                 </tbody>

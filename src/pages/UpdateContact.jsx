@@ -3,7 +3,7 @@ import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useNavigate } from 'react-router-dom';
-import {useParams} from "react-router";
+import {useParams, useSearchParams} from "react-router";
 
 const UpdateContact  = () => {
     const { contactId } = useParams();
@@ -29,7 +29,9 @@ const UpdateContact  = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(form)
-        await axios.post(`${process.env.REACT_APP_BACKEND_URL}/contact/update`, form, { withCredentials: true })
+        form._id = contactId
+        console.log("form to submit: ", form);
+        await axios.patch(`${process.env.REACT_APP_BACKEND_URL}/contact/update`, form, { withCredentials: true })
             .then(function (response) {
                 console.log(response.data.message);
                 navigate('/dashboard');
