@@ -24,7 +24,7 @@ const Contact  = () => {
     }
     return (
         <div className="page">
-            <h1>Create contact Page</h1>
+            <h1>Ajouter un contact</h1>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="email" value={form.email}
                             onChange={handleChange}>

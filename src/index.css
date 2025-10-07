@@ -13,9 +13,19 @@ code {
 }
 .page {
     min-height: 100vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 30px;
+    flex-direction: column;
     /*background: '#f8f9fa';*/
 }
+h1 {
+    padding: 20px 0;
+}
+.updatePage {
 
+}
 .titre-glow {
     color: #b46cff;
     text-shadow:

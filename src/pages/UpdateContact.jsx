@@ -42,7 +42,7 @@ const UpdateContact  = () => {
     }
     return (
         <div className="page">
-            <h1>Create contact Page</h1>
+            <h1>Modifier un contact</h1>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="email" value={form.email}
                             onChange={handleChange}>
@@ -78,7 +78,7 @@ const UpdateContact  = () => {
                     <Form.Control name="adresse" type="text" placeholder="1 rue de la paix" value={form.address} />
                 </Form.Group>
                 <Button variant="primary" type="submit">
-                    Créer le contact
+                    Modifier le contact
                 </Button>
             </Form>
         </div>
